@@ -2,11 +2,11 @@ extends CharacterBody2D
 class_name Player
 
 @export var speed = 400
-var jumping = false
 var screen_size
 var vel1 = velocity.y
 const GRAVITY = 200
 const WALK_SPEED = 200
+const JUMP_HEIGHT = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,13 +18,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	vel1 = velocity.y
 	velocity.y += delta * GRAVITY
-	if (vel1 == 0):
-		jumping = false
 
-	if Input.is_action_pressed("jump") && !jumping:
-		velocity.y = -100
-		print("JUMPO!")
-		jumping = true
+	if Input.is_action_pressed("jump") && is_on_floor():
+		velocity.y = -JUMP_HEIGHT
 	if Input.is_action_pressed("move_left"):
 		velocity.x = -WALK_SPEED
 	elif Input.is_action_pressed("move_right"):

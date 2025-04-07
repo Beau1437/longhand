@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk3a8tr3pl3wo"]
+[gd_scene load_steps=7 format=3 uid="uid://bi1xi4j8bsg71"]
 
-[ext_resource type="Script" uid="uid://b15jeyy1o0ev1" path="res://main.gd" id="1_ke324"]
-[ext_resource type="PackedScene" uid="uid://ko7yy4nrjvxv" path="res://player.tscn" id="1_q1ibk"]
+[ext_resource type="Script" path="res://main.gd" id="1_ke324"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_q1ibk"]
 [ext_resource type="Texture2D" uid="uid://dhyyu0mrlcvvc" path="res://icon.svg" id="3_jnrtx"]
-[ext_resource type="PackedScene" uid="uid://bhea36jmu5lei" path="res://block.tscn" id="4_liwbu"]
+[ext_resource type="PackedScene" uid="uid://bdm5elktcalin" path="res://block.tscn" id="4_liwbu"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_liwbu"]
 resource_name = "walls"
@@ -17,7 +17,6 @@ script = ExtResource("1_ke324")
 
 [node name="Player" parent="." instance=ExtResource("1_q1ibk")]
 position = Vector2(423, 288)
-speed = 400
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 366.0
