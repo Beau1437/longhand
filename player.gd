@@ -59,6 +59,5 @@ func _physics_process(delta: float) -> void:
 
 func start(pos):
 	position = pos
-	print("rahja")
 	show()
 	$CollisionShape2D.disabled = false
