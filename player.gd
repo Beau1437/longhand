@@ -1,8 +1,12 @@
-extends Area2D
-#signal hit
+extends CharacterBody2D
+class_name Player
 
 @export var speed = 400
+var jumping = false
 var screen_size
+var vel1 = velocity.y
+const GRAVITY = 200
+const WALK_SPEED = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,25 +15,36 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
+func _physics_process(delta: float) -> void:
+	vel1 = velocity.y
+	velocity.y += delta * GRAVITY
+	if (vel1 == 0):
+		jumping = false
+
+	if Input.is_action_pressed("jump") && !jumping:
+		velocity.y = -100
+		print("JUMPO!")
+		jumping = true
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	#if Input.is_action_pressed("move_down"):
-		#velocity.y += 1
-	if Input.is_action_pressed("jump"):
-		velocity.y -= 1
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity.x = -WALK_SPEED
+	elif Input.is_action_pressed("move_right"):
+		velocity.x =  WALK_SPEED
+	else:
+		velocity.x = 0
+
+	# "move_and_slide" already takes delta time into account.
+	move_and_slide()
+	#if velocity.length() > 0:
+		#velocity = velocity.normalized() * speed
 		#$AnimatedSprite2D.play()
 	#else: 
 		#$AnimatedSprite2D.stop()
 	
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
-	
+	#var collision = move_and_collide(velocity * delta)
+	#if collision:
+		#print("I collided with ", collision.get_collider().name)
+	#position += velocity * delta
+	#position = position.clamp(Vector2.ZERO, screen_size)
 	#if velocity.x != 0:
 		#$AnimatedSprite2D.animation = "walk"
 		#$AnimatedSprite2D.flip_v = false

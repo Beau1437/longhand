@@ -1,14 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk3a8tr3pl3wo"]
+[gd_scene load_steps=7 format=3 uid="uid://dk3a8tr3pl3wo"]
 
 [ext_resource type="Script" uid="uid://b15jeyy1o0ev1" path="res://main.gd" id="1_ke324"]
 [ext_resource type="PackedScene" uid="uid://ko7yy4nrjvxv" path="res://player.tscn" id="1_q1ibk"]
 [ext_resource type="Texture2D" uid="uid://dhyyu0mrlcvvc" path="res://icon.svg" id="3_jnrtx"]
+[ext_resource type="PackedScene" uid="uid://bhea36jmu5lei" path="res://block.tscn" id="4_liwbu"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_liwbu"]
+resource_name = "walls"
+scenes/1/scene = ExtResource("4_liwbu")
+
+[sub_resource type="TileSet" id="TileSet_bhufg"]
+sources/0 = SubResource("TileSetScenesCollectionSource_liwbu")
 
 [node name="Node" type="Node"]
 script = ExtResource("1_ke324")
 
 [node name="Player" parent="." instance=ExtResource("1_q1ibk")]
 position = Vector2(423, 288)
+speed = 400
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 366.0
@@ -16,4 +25,10 @@ offset_bottom = 259.0
 texture = ExtResource("3_jnrtx")
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(564, 342)
+position = Vector2(559, 228)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_bhufg")
+format = 2
+layer_0/name = "walls"
+layer_0/tile_data = PackedInt32Array(1703937, 0, 65536, 1703943, 0, 65536, 1703950, 0, 65536, 1703958, 0, 65536, 1638431, 0, 65536, 1638437, 0, 65536, 1638444, 0, 65536, 1245235, 0, 65536, 655414, 0, 65536)
