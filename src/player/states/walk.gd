@@ -19,6 +19,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_phyiscs(delta: float) -> State:
+	print("fall fall uuuuuuu")
 	parent.velocity.y += delta * gravity
 	parent.move_and_slide()
 	return null
