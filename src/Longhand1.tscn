@@ -25,14 +25,17 @@ script = ExtResource("2_20iu6")
 [node name="Player" parent="." instance=ExtResource("1_q1ibk")]
 position = Vector2(423, 288)
 
-[node name="StateMachine" type="Node" parent="Player"]
+[node name="StateMachine" type="Node" parent="Player" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("4_qi3pu")
+starting_state = NodePath("Walk")
 
-[node name="Jump" type="Node" parent="Player/StateMachine"]
+[node name="Jump" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("walk_state")]
 script = ExtResource("5_qi3pu")
+walk_state = NodePath("../Walk")
 
-[node name="Walk" type="Node" parent="Player/StateMachine"]
+[node name="Walk" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("jump_state")]
 script = ExtResource("5_t582r")
+jump_state = NodePath("../Jump")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 366.0

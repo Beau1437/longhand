@@ -22,6 +22,7 @@ func process_phyiscs(delta: float) -> State:
 	parent.velocity.y += delta * gravity
 	parent.move_and_slide()
 	return null
+	
 	# "move_and_slide" already takes delta time into account.
 	#if velocity.length() > 0:
 		#velocity = velocity.normalized() * speed

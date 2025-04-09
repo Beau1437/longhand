@@ -11,4 +11,3 @@ func _process(delta: float) -> void:
 
 func new_game():
 	$Player.start($StartPosition.position)
-	
