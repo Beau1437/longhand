@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bi1xi4j8bsg71"]
+[gd_scene load_steps=12 format=4 uid="uid://bi1xi4j8bsg71"]
 
 [ext_resource type="Script" uid="uid://b15jeyy1o0ev1" path="res://src/main.gd" id="1_ke324"]
 [ext_resource type="PackedScene" uid="uid://ko7yy4nrjvxv" path="res://src/player/player.tscn" id="1_q1ibk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://xwmc8ri3dy0y" path="res://src/player/state_machine.gd" id="4_qi3pu"]
 [ext_resource type="Script" uid="uid://cel3w6ot8ef4s" path="res://src/player/states/jump.gd" id="5_qi3pu"]
 [ext_resource type="Script" uid="uid://kxpuxvlcurtu" path="res://src/player/states/walk.gd" id="5_t582r"]
+[ext_resource type="Script" uid="uid://clftf56k75lit" path="res://src/player/states/fall.gd" id="7_t582r"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_liwbu"]
 resource_name = "walls"
@@ -29,13 +30,18 @@ position = Vector2(423, 288)
 script = ExtResource("4_qi3pu")
 starting_state = NodePath("Walk")
 
-[node name="Jump" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("walk_state")]
+[node name="Jump" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("fall_state")]
 script = ExtResource("5_qi3pu")
-walk_state = NodePath("../Walk")
+fall_state = NodePath("../Fall")
 
-[node name="Walk" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("jump_state")]
+[node name="Walk" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("jump_state", "fall_state")]
 script = ExtResource("5_t582r")
 jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+
+[node name="Fall" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("walk_state")]
+script = ExtResource("7_t582r")
+walk_state = NodePath("../Walk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 366.0

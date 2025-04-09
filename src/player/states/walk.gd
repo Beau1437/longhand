@@ -1,25 +1,31 @@
 extends State
-const WALK_SPEED = 200
+@export
+var walk_speed = 200
 
 @export
 var jump_state: State
+@export
+var fall_state: State
 
 func enter() -> void:
 	super()
+	if !Input.is_action_pressed("move_left") && !Input.is_action_pressed("move_right"):
+		parent.velocity.x = 0
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_pressed("jump") && parent.is_on_floor():
+	if !parent.is_on_floor():
+		return fall_state
+	if Input.is_action_pressed("jump"):
 		return jump_state
 	if Input.is_action_pressed("move_left"):
-		parent.velocity.x = -WALK_SPEED
+		parent.velocity.x = -walk_speed
 	elif Input.is_action_pressed("move_right"):
-		parent.velocity.x =  WALK_SPEED
+		parent.velocity.x =  walk_speed
 	else:
 		parent.velocity.x = 0
 	return null
 
 func process_physics(delta: float) -> State:
-	print("fall fall uuuuuuu")
 	parent.velocity.y += delta * gravity
 	parent.move_and_slide()
 	return null
