@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=4 uid="uid://bi1xi4j8bsg71"]
+
+[ext_resource type="Script" uid="uid://b15jeyy1o0ev1" path="res://src/main.gd" id="1_ke324"]
+[ext_resource type="PackedScene" uid="uid://ko7yy4nrjvxv" path="res://src/player/player.tscn" id="1_q1ibk"]
+[ext_resource type="Script" uid="uid://b3qof4v55r7vg" path="res://src/state.gd" id="2_20iu6"]
+[ext_resource type="Texture2D" uid="uid://dhyyu0mrlcvvc" path="res://src/icon.svg" id="3_jnrtx"]
+[ext_resource type="PackedScene" uid="uid://bdm5elktcalin" path="res://src/block.tscn" id="4_liwbu"]
+[ext_resource type="Script" uid="uid://xwmc8ri3dy0y" path="res://src/player/state_machine.gd" id="4_qi3pu"]
+[ext_resource type="Script" uid="uid://cel3w6ot8ef4s" path="res://src/player/states/jump.gd" id="5_qi3pu"]
+[ext_resource type="Script" uid="uid://kxpuxvlcurtu" path="res://src/player/states/walk.gd" id="5_t582r"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_liwbu"]
+resource_name = "walls"
+scenes/1/scene = ExtResource("4_liwbu")
+
+[sub_resource type="TileSet" id="TileSet_bhufg"]
+sources/0 = SubResource("TileSetScenesCollectionSource_liwbu")
+
+[node name="Node" type="Node2D"]
+script = ExtResource("1_ke324")
+
+[node name="State" type="Node" parent="."]
+script = ExtResource("2_20iu6")
+
+[node name="Player" parent="." instance=ExtResource("1_q1ibk")]
+position = Vector2(423, 288)
+
+[node name="StateMachine" type="Node" parent="Player"]
+script = ExtResource("4_qi3pu")
+
+[node name="Jump" type="Node" parent="Player/StateMachine"]
+script = ExtResource("5_qi3pu")
+
+[node name="Walk" type="Node" parent="Player/StateMachine"]
+script = ExtResource("5_t582r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 366.0
+offset_bottom = 259.0
+texture = ExtResource("3_jnrtx")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(559, 228)
+
+[node name="walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAABABoAAAAAAAAAAQAHABoAAAAAAAAAAQAOABoAAAAAAAAAAQAWABoAAAAAAAAAAQAfABkAAAAAAAAAAQAlABkAAAAAAAAAAQAsABkAAAAAAAAAAQAzABMAAAAAAAAAAQA2AAoAAAAAAAAAAQA=")
+tile_set = SubResource("TileSet_bhufg")

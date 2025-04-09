@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Longhand"
-run/main_scene="res://Longhand1.tscn"
+run/main_scene="res://src/Longhand1.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://src/icon.svg"
 
 [input]
 

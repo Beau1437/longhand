@@ -1,35 +1,28 @@
-extends CharacterBody2D
-class_name Player
-
-@export var speed = 400
-var screen_size
-var vel1 = velocity.y
-const GRAVITY = 200
+extends State
 const WALK_SPEED = 200
-const JUMP_HEIGHT = 100
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	screen_size = get_viewport_rect().size
-	hide()
+@export
+var jump_state: State
 
+func enter() -> void:
+	super()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	vel1 = velocity.y
-	velocity.y += delta * GRAVITY
-
-	if Input.is_action_pressed("jump") && is_on_floor():
-		velocity.y = -JUMP_HEIGHT
+func process_input(event: InputEvent) -> State:
+	if Input.is_action_pressed("jump") && parent.is_on_floor():
+		return jump_state
 	if Input.is_action_pressed("move_left"):
-		velocity.x = -WALK_SPEED
+		parent.velocity.x = -WALK_SPEED
 	elif Input.is_action_pressed("move_right"):
-		velocity.x =  WALK_SPEED
+		parent.velocity.x =  WALK_SPEED
 	else:
-		velocity.x = 0
+		parent.velocity.x = 0
+	return null
 
+func process_phyiscs(delta: float) -> State:
+	parent.velocity.y += delta * gravity
+	parent.move_and_slide()
+	return null
 	# "move_and_slide" already takes delta time into account.
-	move_and_slide()
 	#if velocity.length() > 0:
 		#velocity = velocity.normalized() * speed
 		#$AnimatedSprite2D.play()
@@ -56,8 +49,3 @@ func _physics_process(delta: float) -> void:
 	#hide()
 	#hit.emit()
 	#$CollisionShape2D.set_deferred("disabled", true)
-
-func start(pos):
-	position = pos
-	show()
-	$CollisionShape2D.disabled = false
