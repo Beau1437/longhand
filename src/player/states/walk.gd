@@ -9,13 +9,10 @@ var fall_state: State
 
 func enter() -> void:
 	super()
-	if !Input.is_action_pressed("move_left") && !Input.is_action_pressed("move_right"):
-		parent.velocity.x = 0
+	process_input(null)
 
 func process_input(event: InputEvent) -> State:
-	if !parent.is_on_floor():
-		return fall_state
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") && parent.is_on_floor():
 		return jump_state
 	if Input.is_action_pressed("move_left"):
 		parent.velocity.x = -walk_speed
@@ -26,6 +23,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if !parent.is_on_floor():
+		return fall_state
 	parent.velocity.y += delta * gravity
 	parent.move_and_slide()
 	return null
