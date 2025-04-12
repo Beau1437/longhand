@@ -39,9 +39,10 @@ script = ExtResource("5_t582r")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 
-[node name="Fall" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("walk_state")]
+[node name="Fall" type="Node" parent="Player/StateMachine" node_paths=PackedStringArray("walk_state", "jump_state")]
 script = ExtResource("7_t582r")
 walk_state = NodePath("../Walk")
+jump_state = NodePath("../Jump")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 366.0
