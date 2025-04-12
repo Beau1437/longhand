@@ -1,9 +1,9 @@
 extends State
 
-@export
-var jump_state: State
-@export
-var fall_state: State
+@onready
+var jump_state: State = $"../Jump"
+@onready
+var fall_state: State = $"../Fall"
 
 func enter() -> void:
 	super()

@@ -1,7 +1,7 @@
 extends State
 
-@export
-var fall_state: State
+@onready
+var fall_state: State = $"../Fall"
 
 @export
 var jump_force: float = 400
