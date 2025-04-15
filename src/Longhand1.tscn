@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://b15jeyy1o0ev1" path="res://src/main.gd" id="1_ke324"]
 [ext_resource type="PackedScene" uid="uid://ko7yy4nrjvxv" path="res://src/player/player.tscn" id="1_q1ibk"]
 [ext_resource type="Script" uid="uid://b3qof4v55r7vg" path="res://src/state.gd" id="2_20iu6"]
-[ext_resource type="Texture2D" uid="uid://dhyyu0mrlcvvc" path="res://src/icon.svg" id="3_jnrtx"]
 [ext_resource type="PackedScene" uid="uid://bdm5elktcalin" path="res://src/block.tscn" id="4_liwbu"]
 [ext_resource type="Script" uid="uid://xwmc8ri3dy0y" path="res://src/player/state_machine.gd" id="4_qi3pu"]
 [ext_resource type="Script" uid="uid://cel3w6ot8ef4s" path="res://src/player/states/jump.gd" id="5_qi3pu"]
 [ext_resource type="Script" uid="uid://kxpuxvlcurtu" path="res://src/player/states/walk.gd" id="5_t582r"]
 [ext_resource type="Script" uid="uid://clftf56k75lit" path="res://src/player/states/fall.gd" id="7_t582r"]
+[ext_resource type="Script" uid="uid://dflrmp8dw7mfg" path="res://src/grab.gd" id="8_t582r"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_liwbu"]
 resource_name = "walls"
@@ -24,7 +24,7 @@ script = ExtResource("1_ke324")
 script = ExtResource("2_20iu6")
 
 [node name="Player" parent="." instance=ExtResource("1_q1ibk")]
-position = Vector2(423, 288)
+position = Vector2(96, 503)
 
 [node name="StateMachine" type="Node" parent="Player" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("4_qi3pu")
@@ -39,15 +39,19 @@ script = ExtResource("5_t582r")
 [node name="Fall" type="Node" parent="Player/StateMachine"]
 script = ExtResource("7_t582r")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 366.0
-offset_bottom = 259.0
-texture = ExtResource("3_jnrtx")
+[node name="Grab" type="Node" parent="Player/StateMachine"]
+script = ExtResource("8_t582r")
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(559, 228)
+position = Vector2(94, 503)
 
 [node name="walls" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAABABoAAAAAAAAAAQAHABoAAAAAAAAAAQAOABoAAAAAAAAAAQAWABoAAAAAAAAAAQAfABkAAAAAAAAAAQAlABkAAAAAAAAAAQAsABkAAAAAAAAAAQAzABMAAAAAAAAAAQA2AAoAAAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAACACUAAAAAAAAAAQAHACUAAAAAAAAAAQAMACUAAAAAAAAAAQAYACUAAAAAAAAAAQAdACUAAAAAAAAAAQAlACIAAAAAAAAAAQAuAB8AAAAAAAAAAQBAABUAAAAAAAAAAQAzAA4AAAAAAAAAAQAsAA4AAAAAAAAAAQA1AB0AAAAAAAAAAQA7ABoAAAAAAAAAAQAkAA4AAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_bhufg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 1149.0
+offset_bottom = 650.0
+color = Color(0.482353, 0.0627451, 0.0196078, 1)

@@ -4,14 +4,17 @@ extends State
 var walk_state: State = $"../Walk"
 @onready
 var jump_state: State = $"../Jump"
+@onready
+var grab_state: State = $"../Grab"
 
 func enter() -> void:
 	super()
 	
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
-	
-	if parent.is_on_floor():
+	if Input.is_action_pressed("grab"):
+		return grab_state
+	if parent.is_on_floor() && !(grab_state.grabbing()):
 		if Input.is_action_pressed("jump"):
 			return jump_state
 		return walk_state
