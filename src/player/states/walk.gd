@@ -16,17 +16,16 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_pressed("grab"):
 		return grab_state
-	if (!(grab_state.grabbing())):
-		if Input.is_action_pressed("jump") && parent.is_on_floor():
-			return jump_state
-		if Input.is_action_pressed("move_left"):
-			parent.velocity.x = -move_speed
-			dir = -1
-		elif Input.is_action_pressed("move_right"):
-			parent.velocity.x =  move_speed
-			dir = 1
-		else:
-			parent.velocity.x = 0
+	if Input.is_action_pressed("jump") && parent.is_on_floor():
+		return jump_state
+	if Input.is_action_pressed("move_left"):
+		parent.velocity.x = -move_speed
+		dir = -1
+	elif Input.is_action_pressed("move_right"):
+		parent.velocity.x =  move_speed
+		dir = 1
+	else:
+		parent.velocity.x = 0
 	return null
 
 func process_physics(delta: float) -> State:
@@ -34,7 +33,7 @@ func process_physics(delta: float) -> State:
 		dir = 1
 	else:
 		dir = -1
-	if !parent.is_on_floor() && !(grab_state.grabbing()):
+	if !parent.is_on_floor():
 		return fall_state
 	parent.move_and_slide()
 	return null
