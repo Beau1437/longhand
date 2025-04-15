@@ -27,13 +27,7 @@ func process_physics(delta: float) -> State:
 	return null
 	
 func process_input(event: InputEvent) -> State:
-<<<<<<< HEAD
-	if Input.is_action_just_released("jump"):
-		parent.velocity.y = 0
-		return fall_state
-=======
 	if Input.is_action_just_released("jump") && !(grab_state.grabbing()):
 		parent.velocity.y -= parent.velocity.y / 2
 		#parent.velocity.y = 0 #Needs to be more gradual
->>>>>>> 91cabd0653fd88e7ee077c7fac05bb2eea19ebe0
 	return null
