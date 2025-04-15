@@ -7,19 +7,21 @@ var fall_state: State = $"../Fall"
 @onready
 var walk_state: State = $"../Walk" 
 @onready
-var dir = walk_state.dir
+var dir : float
 var grabzo = false
 
 func enter() -> void:
 	super()
-	dir = walk_state.dir
+	if Input.get_axis("move_left", "move_right") != 0:
+		dir = Input.get_axis("move_left", "move_right")
+	print(dir)
 	parent.velocity.y = 0
 	parent.velocity.x += dir * 500
 	#grabzo = true
 
 func process_physics(delta: float) -> State:
 	parent.velocity.x -= dir * (gravity * delta)
-	print(parent.velocity.x)
+	#print(parent.velocity.x)
 	if (dir > 0 && parent.velocity.x <= 100):
 		return walk_state
 	elif (dir < 0 && parent.velocity.x >= -100):
