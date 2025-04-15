@@ -2,9 +2,11 @@ extends State
 
 @onready
 var fall_state: State = $"../Fall"
+@onready
+var grab_state: State = $"../Grab"
 
 @export
-var jump_force: float = 400
+var jump_force: float = 500
 
 func enter() -> void:
 	super()
@@ -12,8 +14,9 @@ func enter() -> void:
 	
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
-	
-	if parent.velocity.y > 0:
+	if Input.is_action_pressed("grab"):
+		return grab_state
+	if parent.velocity.y > 0 && !(grab_state.grabbing()):
 		return fall_state
 	
 	var movement = Input.get_axis("move_left", "move_right") * move_speed
@@ -24,7 +27,13 @@ func process_physics(delta: float) -> State:
 	return null
 	
 func process_input(event: InputEvent) -> State:
+<<<<<<< HEAD
 	if Input.is_action_just_released("jump"):
 		parent.velocity.y = 0
 		return fall_state
+=======
+	if Input.is_action_just_released("jump") && !(grab_state.grabbing()):
+		parent.velocity.y -= parent.velocity.y / 2
+		#parent.velocity.y = 0 #Needs to be more gradual
+>>>>>>> 91cabd0653fd88e7ee077c7fac05bb2eea19ebe0
 	return null

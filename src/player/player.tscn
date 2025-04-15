@@ -1,7 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://ko7yy4nrjvxv"]
 
 [ext_resource type="Script" uid="uid://cpsjc76wy7jsd" path="res://src/player/player.gd" id="1_4flbx"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://c0dlar4ypww2f" path="res://src/player/LongHandSpriteTemp.png" id="2_rxibo"]
+=======
+[ext_resource type="Texture2D" uid="uid://c3rdffl84rkjx" path="res://src/player/LongHandSpriteTemp.png" id="2_rxibo"]
+>>>>>>> 91cabd0653fd88e7ee077c7fac05bb2eea19ebe0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rxibo"]
 radius = 6.75
@@ -17,5 +21,10 @@ position = Vector2(-2.25, 0.75)
 shape = SubResource("CapsuleShape2D_rxibo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+<<<<<<< HEAD
 scale = Vector2(0.05, 0.05)
+=======
+position = Vector2(0.5, -0.375)
+scale = Vector2(0.059, 0.0505)
+>>>>>>> 91cabd0653fd88e7ee077c7fac05bb2eea19ebe0
 texture = ExtResource("2_rxibo")

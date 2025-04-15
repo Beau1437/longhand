@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://c0dlar4ypww2f"
+=======
+uid="uid://c3rdffl84rkjx"
+>>>>>>> 91cabd0653fd88e7ee077c7fac05bb2eea19ebe0
 path="res://.godot/imported/LongHandSpriteTemp.png-76722c05541086f82a74b66f47e517b0.ctex"
 metadata={
 "vram_texture": false
