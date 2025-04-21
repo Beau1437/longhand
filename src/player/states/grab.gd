@@ -8,7 +8,6 @@ var fall_state: State = $"../Fall"
 var walk_state: State = $"../Walk" 
 @onready
 var dir : float
-var grabzo = false
 
 func enter() -> void:
 	super()
@@ -17,7 +16,7 @@ func enter() -> void:
 	print(dir)
 	parent.velocity.y = 0
 	parent.velocity.x += dir * 500
-	#grabzo = true
+	cooldown()
 
 func process_physics(delta: float) -> State:
 	parent.velocity.x -= dir * (gravity * delta)
@@ -33,11 +32,14 @@ func process_physics(delta: float) -> State:
 		#parent.animations.flip_h = movement < 0
 	parent.move_and_slide()
 	return null
-	
+
+func cooldown() -> void:
+	parent.can_grab = false
+	get_tree().create_timer(2).timeout.connect(
+		func(): 
+			parent.can_grab = true)
 #func process_input(event: InputEvent) -> State:
 	#if Input.is_action_just_released("jump"):
 		#parent.velocity.y -= parent.velocity.y / 2
 		#parent.velocity.y = 0 #Needs to be more gradual
 	#return null
-func grabbing() -> bool:
-	return grabzo

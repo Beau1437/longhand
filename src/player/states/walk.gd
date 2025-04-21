@@ -14,7 +14,7 @@ func enter() -> void:
 	process_input(null)
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_pressed("grab"):
+	if Input.is_action_pressed("grab") && parent.can_grab:
 		return grab_state
 	if Input.is_action_pressed("jump") && parent.is_on_floor():
 		return jump_state

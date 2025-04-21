@@ -14,7 +14,7 @@ func enter() -> void:
 	
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
-	if Input.is_action_pressed("grab"):
+	if Input.is_action_pressed("grab") && parent.can_grab:
 		return grab_state
 	if parent.velocity.y > 0:
 		return fall_state

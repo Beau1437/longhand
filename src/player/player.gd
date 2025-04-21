@@ -4,7 +4,7 @@ class_name Player
 @onready
 var StateMachine = $StateMachine
 
-@export var speed = 400
+var can_grab = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
