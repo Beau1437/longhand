@@ -16,12 +16,15 @@ func process_input(event: InputEvent) -> State:
 		return grab_state
 	if Input.is_action_pressed("jump") && parent.is_on_floor():
 		return jump_state
-	if Input.is_action_pressed("move_left"):
-		parent.velocity.x = -move_speed
-		parent.dir = -1
-	elif Input.is_action_pressed("move_right"):
-		parent.velocity.x =  move_speed
-		parent.dir = 1
+	if !(Input.is_action_pressed("move_left") && Input.is_action_pressed("move_right")):
+		if Input.is_action_pressed("move_left"):
+			parent.velocity.x = -move_speed
+			parent.dir = -1
+		elif Input.is_action_pressed("move_right"):
+			parent.velocity.x =  move_speed
+			parent.dir = 1
+		else:
+			parent.velocity.x = 0
 	else:
 		parent.velocity.x = 0
 	return null
