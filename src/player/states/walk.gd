@@ -6,8 +6,6 @@ var jump_state: State = $"../Jump"
 var fall_state: State = $"../Fall"
 @onready
 var grab_state: State = $"../Grab"
-var dir: int = 1
-
 
 func enter() -> void:
 	super()
@@ -20,19 +18,19 @@ func process_input(event: InputEvent) -> State:
 		return jump_state
 	if Input.is_action_pressed("move_left"):
 		parent.velocity.x = -move_speed
-		dir = -1
+		parent.dir = -1
 	elif Input.is_action_pressed("move_right"):
 		parent.velocity.x =  move_speed
-		dir = 1
+		parent.dir = 1
 	else:
 		parent.velocity.x = 0
 	return null
 
 func process_physics(delta: float) -> State:
 	if (parent.velocity.x > 0):
-		dir = 1
+		parent.dir = 1
 	else:
-		dir = -1
+		parent.dir = -1
 	if !parent.is_on_floor():
 		return fall_state
 	parent.move_and_slide()
