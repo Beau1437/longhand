@@ -27,10 +27,6 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if (parent.velocity.x > 0):
-		parent.dir = 1
-	else:
-		parent.dir = -1
 	if !parent.is_on_floor():
 		return fall_state
 	parent.move_and_slide()

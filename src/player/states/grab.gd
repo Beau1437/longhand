@@ -11,6 +11,7 @@ func enter() -> void:
 	super()
 	if Input.get_axis("move_left", "move_right") != 0:
 		parent.dir = Input.get_axis("move_left", "move_right")
+	print(parent.dir)
 	parent.velocity.y = 0
 	parent.velocity.x += parent.dir * 500
 	cooldown()
@@ -18,9 +19,9 @@ func enter() -> void:
 func process_physics(delta: float) -> State:
 	parent.velocity.x -= parent.dir * (gravity * delta)
 	#print(parent.velocity.x)
-	if (parent.dir > 0 && parent.velocity.x <= 100):
+	if parent.dir > 0 && parent.velocity.x <= 100:
 		return walk_state
-	elif (parent.dir < 0 && parent.velocity.x >= -100):
+	elif parent.dir < 0 && parent.velocity.x >= -100:
 		return walk_state
 	
 	#var movement = Input.get_axis("move_left", "move_right") * move_speed
