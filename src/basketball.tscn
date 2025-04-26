@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnsfkdx1u7i0q"]
+[gd_scene load_steps=5 format=3 uid="uid://dptfhmnq88nkj"]
 
 [ext_resource type="Script" path="res://src/basketball.gd" id="1_x1c23"]
 [ext_resource type="Texture2D" uid="uid://c1hhe7gureevp" path="res://src/BasketballBasic.png" id="2_1rgpq"]

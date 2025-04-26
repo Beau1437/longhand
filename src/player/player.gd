@@ -5,7 +5,7 @@ class_name Player
 var StateMachine = $StateMachine
 
 var can_grab = true
-var dir : float = 1
+var dir : int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
