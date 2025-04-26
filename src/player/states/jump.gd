@@ -25,6 +25,7 @@ func process_physics(delta: float) -> State:
 		#parent.animations.flip_h = movement < 0
 		parent.dir = movement
 	parent.move_and_slide()
+	parent.push_stuff()
 	return null
 	
 func process_input(event: InputEvent) -> State:

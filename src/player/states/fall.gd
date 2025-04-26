@@ -24,4 +24,5 @@ func process_physics(delta: float) -> State:
 	if movement != 0:
 		parent.dir = movement
 	parent.move_and_slide()
+	parent.push_stuff()
 	return null

@@ -24,3 +24,11 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+	
+func push_stuff() -> void:
+	# after calling move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			print("PUSHING!")
+			c.get_collider().apply_central_impulse(-c.get_normal() * 80)

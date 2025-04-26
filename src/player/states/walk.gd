@@ -33,6 +33,7 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return fall_state
 	parent.move_and_slide()
+	parent.push_stuff()
 	return null
 	
 	# "move_and_slide" already takes delta time into account.

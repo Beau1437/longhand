@@ -33,6 +33,7 @@ func process_physics(delta: float) -> State:
 	#if movement != 0:
 		#parent.animations.flip_h = movement < 0
 	parent.move_and_slide()
+	parent.push_stuff()
 	return null
 
 func cooldown() -> void:
