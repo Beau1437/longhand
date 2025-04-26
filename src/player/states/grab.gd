@@ -13,6 +13,10 @@ func enter() -> void:
 		parent.dir = Input.get_axis("move_left", "move_right")
 	print(parent.dir)
 	parent.velocity.y = 0
+	if parent.dir >= 0:
+		parent.dir = 1
+	else:
+		parent.dir = -1
 	parent.velocity.x += parent.dir * 500
 	cooldown()
 
